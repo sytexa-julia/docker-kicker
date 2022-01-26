@@ -9,21 +9,31 @@ _In its current state, it is not advisable to use this in a production setting. 
 Set the following environment variables:
 
 ```
-KICKER_DOCKERCONNECTCONFIG="connect config JSON, see below"
+KICKER_CONNECTCONFIG=path/to/connect/config.json
 KICKER_PORT=41331
-KICKER_CONFIG="config JSON, see below"
+KICKER_CONFIG=path/to/config.json
 ```
 
 ### Connect Config JSON ###
 
-Should parse to any valid connect configuration for (Docker Modem)[https://github.com/apocas/docker-modem]
+Should parse to any valid connect configuration for (Docker Modem)[https://github.com/apocas/docker-modem].
 
 ```json5
 {
-    "socketPath":"",
-    "protocol":"",
-    "host":"",
-    "port":1,
+    "docker": {
+        "socketPath":"",
+        "protocol":"",
+        "host":"",
+        "port":1
+    },
+    "proxy": {
+        // See: https://github.com/neekware/fullerstack/tree/main/libs/nax-ipware
+
+        // List of trusted proxies
+        "proxyList": ["172.16."],
+        // When known, the number of proxies that requests pass through
+        "count": 1
+    }
 }
 ```
 
@@ -43,6 +53,8 @@ In the below example, POSTing to `http(s)://docker-kicker.your.org/ABCDEFGHIJKLM
     "allowFrom": ["IPv6", "IPv4", ...],
     // Docker image + tag
     "image": "docker/image:tag",
+    // Generate dynamic env vars from query string params. This is an allowlist; any other query params will be ignored.
+    "queryParamsToEnv": ["SOME_VARIABLE_ENV_VAR"],
     // Startup command
     "cmd": ["command", ...],
     // Docker API Container Create options

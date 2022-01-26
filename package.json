@@ -1,6 +1,6 @@
 {
   "name": "docker-kicker",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "readme": "README.md",
   "description": "Kick off a docker container on-demand via a web request.",
   "main": "app.js",
@@ -10,8 +10,10 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@fullerstack/nax-ipware": "^0.0.9",
     "dockerode": "^3.3.1",
     "express": "^4.17.2",
+    "lodash": "^4.17.21",
     "pino": "^7.6.4",
     "pino-pretty": "^7.5.0"
   }

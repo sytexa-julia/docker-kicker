@@ -1,0 +1,17 @@
+[
+  {
+    "name": "hello-world",
+    "key": "hello-world",
+    "image": "hello-world",
+    "limit": 1,
+    "queryParamsToEnv": ["SayGoodbye"],
+    "createOptions": {
+      "env": [
+        "SOME_ENV_VAR=abc123"
+      ],
+      "HostConfig": {
+        "NetworkMode": "docker-network-name"
+      }
+    }
+  }
+]
